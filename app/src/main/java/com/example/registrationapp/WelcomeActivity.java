@@ -29,6 +29,7 @@ public class WelcomeActivity extends AppCompatActivity {
         String genderStr = sp.getString("gender", "Not found");
         String ageStr = sp.getString("birthyear", "Not found");
 
+
         user.setText("Welcome, " + username);
         fullName.setText("Full Name: " + fullNameStr);
         gender.setText("Gender: " + genderStr);

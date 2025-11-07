@@ -136,7 +136,6 @@
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
 
-        <!-- 👇 New TextView for login redirect -->
         <TextView
             android:id="@+id/loginLink"
             android:layout_width="wrap_content"

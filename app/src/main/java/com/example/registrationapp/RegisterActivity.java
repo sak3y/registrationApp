@@ -39,8 +39,6 @@ public class RegisterActivity extends AppCompatActivity {
         RadioButton m_rb = findViewById(R.id.m_rb);
         RadioButton f_rb = findViewById(R.id.f_rb);
 
-        TextView loginLink = findViewById(R.id.loginLink);
-
         // Spinner setup
         Spinner bySpinner = findViewById(R.id.bySpinner);
         bySpinner.setPrompt("Select birth year");
@@ -52,6 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, years);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         bySpinner.setAdapter(adapter);
+
 
         // Register button
         Button btn = findViewById(R.id.button);
@@ -68,10 +67,11 @@ public class RegisterActivity extends AppCompatActivity {
             SharedPreferences sp = getSharedPreferences("UserData", MODE_PRIVATE);
             String existingUser = sp.getString("username", "");
 
+
             // Error handling
             if (existingUser.equals(u.user)) {
                 Toast.makeText(this, "User already exists", Toast.LENGTH_SHORT).show();
-                return; // stop registration
+                return;
             }
             if (u.user.isEmpty() || u.fullName.isEmpty() || u.pass.isEmpty() || confirm.isEmpty() || u.gender.isEmpty() || u.bYear.isEmpty()) {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
@@ -83,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
 
-            // Save to SharedPreferences
+            // Save data locally
             SharedPreferences.Editor editor = sp.edit();
             editor.putString("username", u.user);
             editor.putString("fullname", u.fullName);
@@ -94,13 +94,14 @@ public class RegisterActivity extends AppCompatActivity {
 
             Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show();
 
-            // Go to Login
+            // Send to login
             Intent i = new Intent(RegisterActivity.this, MainActivity.class);
             startActivity(i);
             finish();
         });
 
-        // Login send
+        // Return to login page
+        TextView loginLink = findViewById(R.id.loginLink);
         loginLink.setOnClickListener(v -> {
             Intent i = new Intent(RegisterActivity.this, MainActivity.class);
             startActivity(i);
