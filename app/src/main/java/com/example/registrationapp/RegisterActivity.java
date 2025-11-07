@@ -78,6 +78,11 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
 
+            if (u.pass.length() < 7) {
+                Toast.makeText(this, "Passwords must be greater than 7 characters", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             if (!u.pass.equals(confirm)) {
                 Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
                 return;
